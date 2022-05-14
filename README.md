@@ -61,3 +61,17 @@ class Client:
 	def send_to_middle_server(token: str, msg: Any):
 		MiddleServer.send_to_server(token, self.host_and_port, msg)
 ```
+
+```json
+{
+	"ClientTokens": {
+		"client": ["token", "..."],
+	},
+	"TokenClientsAndServers" {
+		"token": {
+			"client": ["HOST_AND_PORT_type", "..."],
+			"server": ["HOST_AND_PORT_type", "..."],
+		},
+	}
+}
+```
