@@ -4,7 +4,6 @@ Chatting applictoin
 ```
 (client_application) <-> (middle_server) <-> (server)
 
-
 [ client ]
 	-> send/recv to/from the *middle_server
 	-> makes a request to create a server (*middle_server returns the server id)
@@ -26,36 +25,32 @@ HOST_AND_PORT_type = NewType('HOST_AND_PORT_type', Tuple[str, int])
 
 class Token:
 	@staticmethod
-	def generate(self) -> str:
+	def generate(*args, **kwargs) -> str:
 		return
 	@staticmethod
-	def register_server(self, token: str, server: HOST_AND_PORT_type) -> None:
+	def register_server(token: str, server: HOST_AND_PORT_type) -> None:
 		return
 	@staticmethod
-	def register_client(self, token: str, client: HOST_AND_PORT_type) -> None:
+	def register_client(token: str, client: HOST_AND_PORT_type) -> None:
 		return
 
 class Server:
-	def create(self) -> HOST_AND_PORT_type:
+	@staticmethod
+	def create() -> HOST_AND_PORT_type:
 		return
 
 class MiddleServer:
-	def __init__(self):
-		self.max_clients_per_server = 30
-	def create(self, clients: int):
-		return
-	def create_server(clients: int):
-		servers = (clients // self.max_clients_per_server)
-		if (clients % self.max_clients_per_server != 0):
-			servers += 1
+	@staticmethod
+	def create_server(client: HOST_AND_PORT_type, clients: int) -> str:
 		token = Token.generate()
-		for _ in range(servers):
-			Token.register_server(token, Server.create())
-	def connect(self, token: str, client: HOST_AND_PORT_type):
+		Token.register_server(token, Server.create())
 		Token.register_client(token, client)
-	def send_to_clients(self, token: str, msg: Any):
+		return token
+	@staticmethod
+	def send_to_clients(token: str, msg: Any):
 		return
-	def send_to_servers(self, token: str, msg: Any):
+	@staticmethod
+	def send_to_server(token: str, client: HOST_AND_PORT_type, msg: Any):
 		return
 
 class Client:
@@ -63,6 +58,6 @@ class Client:
 		self.host_and_port = host_and_port
 	def create_server(self, clients: int = 1) -> str:
 		return MiddleServer.create_server(clients)
-	def connect(self, token: str):
-		return self.middle_server.connect(self.host_and_port, token)
+	def send_to_middle_server(token: str, msg: Any):
+		MiddleServer.send_to_server(token, self.host_and_port, msg)
 ```
