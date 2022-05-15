@@ -18,6 +18,9 @@ Chatting applictoin
 
 [ server ]
 	-> send/recv to/from the *middle_server
+
+[ Remote Storage Server ]
+	-> client server to send/recv a client data
 ```
 
 ```python
@@ -72,6 +75,12 @@ class Client:
 			"client": ["HOST_AND_PORT_type", "..."],
 			"server": ["HOST_AND_PORT_type", "..."],
 		},
+	},
+	"RemoteStorageServerConnections": {
+		"client": {
+			"server": "..."
+		}
 	}
+
 }
 ```
