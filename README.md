@@ -76,11 +76,13 @@ class Client:
 			"server": ["HOST_AND_PORT_type", "..."],
 		},
 	},
-	"RemoteStorageServerConnections": {
+	"ClientRemoteStorageServers": {
 		"client": {
-			"server": "..."
+			"servers": ["HOST_AND_PORT_type", "..."],
+			"tokens": {
+				"token": ["HOST_AND_PORT_type", "..."],
+			},
 		}
-	}
-
+	},
 }
 ```
