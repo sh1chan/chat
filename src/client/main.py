@@ -23,9 +23,20 @@ class RSS:
       connection.close()
 
 
-class Client:
+class MiddleServer:
+  pass
 
-  def send_to_LSS(self, msg):
+
+class Client:
+  def create_server(self, clients):
+    pass
+
+  def send_to_middle_server(token, msg):
+
+    if ...
+    pass
+
+  def send_to_RSS(self, msg):
     if (self.LOCAL_STORAGE_SERVER_CONNECTION is None):
       raise ValueError('LLS not setted')
 
